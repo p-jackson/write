@@ -1,0 +1,30 @@
+<!doctype html>
+<html>
+<head>
+  <title>Write</title>
+  <link href='http://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,600,700,300italic,400italic,600italic,700italic|Source+Serif+Pro&subset=latin,latin-ext' rel='stylesheet' type='text/css'>
+  <link rel="stylesheet" type="text/css" href="css/main.css">
+</head>
+<body data-bind="click: onBodyClick, event: { mousemove: onMouseMove }, css: bodyStyle">
+  <header data-bind="css: { isHidden: hideHeader }">
+    <!-- ko with: preferences -->
+    <div class="preferences" data-bind="css: { isOpen: showMenu }">
+      <button  type="menu" menu="dropdown-menu" data-bind="click: onButtonClick">Preferences</button>
+      <menu type="popup" id="dropdown-menu">
+        <menu>
+          <menuitem data-bind="click: onSmallerClick, css: { isSelected: smallerSelected }">Smaller</menuitem>
+          <menuitem data-bind="click: onNormalClick, css: { isSelected: normalSelected }">Normal</menuitem>
+          <menuitem data-bind="click: onLargerClick, css: { isSelected: largerSelected }">Larger</menuitem>
+        </menu>
+        <menu>
+          <menuitem data-bind="click: onLightClick, css: { isSelected: lightSelected }">Light</menuitem>
+          <menuitem data-bind="click: onDarkClick, css: { isSelected: darkSelected }">Dark</menuitem>
+        </menu>
+      </menu>
+    </div>
+    <!-- /ko -->
+  </header>
+  <main class="editor" contenteditable data-bind="hasFocus: focusEditor, content: contents, css: contentsStyle"></main>
+  <script type="text/javascript" src="http://cdnjs.cloudflare.com/ajax/libs/require.js/2.1.15/require.min.js" data-main="js/main.js"></script>
+</body>
+</html>

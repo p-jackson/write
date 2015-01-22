@@ -1,0 +1,131 @@
+.preferences {
+  float: right;
+  height: 50px;
+  border-left: 2px solid;
+}
+
+.preferences button {
+  height: 100%;
+  border: none;
+  outline: none;
+  padding: 0 1em;
+}
+
+.theme-light .preferences button {
+  background: @light-theme-background-highlights;
+}
+
+.theme-dark .preferences button {
+  background: @dark-theme-background-highlights;
+}
+
+.preferences button::after {
+  content: '';
+  width: 1em;
+  margin-left: 0.5em;
+  top: 2px;
+  height: 1em;
+  display: inline-block;
+  background: url('../img/chevron-down.svg');
+  background-repeat: no-repeat;
+  background-position: 50% 50%;
+  position: relative;
+  transition: transform 300ms ease;
+}
+
+.preferences.isOpen button::after {
+  transform: rotate(180deg);
+}
+
+.preferences button:hover,
+.preferences.isOpen button {
+  background: @active-control-background;
+}
+
+.theme-light .preferences button:hover,
+.theme-light .preferences.isOpen button {
+  color: @light-theme-active-control-foreground;
+}
+
+.theme-dark .preferences button:hover,
+.theme-dark .preferences.isOpen button {
+  color: @dark-theme-active-control-foreground;
+}
+
+.preferences menu {
+  position: relative;
+  list-style: none;
+  margin: 0;
+  display: none;
+  padding: 6px 0;
+}
+
+.theme-light .preferences menu {
+  background: @light-theme-background-highlights;
+}
+
+.theme-dark .preferences menu {
+  background: @dark-theme-background-highlights;
+}
+
+.preferences.isOpen menu {
+  display: block;
+}
+
+.preferences menu menu {
+  border-bottom: 2px solid;
+}
+
+.preferences menu menu:first-of-type {
+  border-top: 2px solid;
+}
+
+.theme-light .preferences menu menu,
+.theme-light .preferences menu menu:first-of-type {
+  border-color: @light-theme-background;
+}
+
+.theme-dark .preferences menu menu,
+.theme-dark .preferences menu menu:first-of-type {
+  border-color: @dark-theme-background;
+}
+
+.preferences menuitem {
+  display: block;
+  padding: 13px 0;
+  text-align: center;
+  position: relative;
+}
+
+.preferences menuitem:hover {
+  background: @active-control-background;
+}
+
+.theme-light .preferences menuitem:hover {
+  color: @light-theme-active-control-foreground;
+}
+
+.theme-dark .preferences menuitem:hover {
+  color: @dark-theme-active-control-foreground;
+}
+
+.preferences menuitem.isSelected::after {
+  content: '';
+  width: 1em;
+  margin-left: 0.5em;
+  left: 0;
+  height: 100%;
+  top: 0;
+  background: url('../img/check.svg');
+  background-repeat: no-repeat;
+  background-position: 50% 50%;
+  position: absolute;
+}
+
+.theme-light .preferences {
+  border-left-color: @light-theme-background;
+}
+
+.theme-dark .preferences {
+  border-left-color: @dark-theme-background;
+}

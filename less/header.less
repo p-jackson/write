@@ -1,0 +1,21 @@
+header {
+  cursor: default;
+  position: fixed;
+  width: 100%;
+  top: 0;
+  opacity: 1;
+  transition: opacity 250ms;
+
+  &.isHidden {
+    opacity: 0;
+    transition: opacity 2s;
+  }
+}
+
+.theme-light header {
+  background: @light-theme-background-highlights;
+}
+
+.theme-dark header {
+  background: @dark-theme-background-highlights;
+}

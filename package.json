@@ -1,0 +1,11 @@
+{
+  "name": "write",
+  "version": "1.0.0",
+  "description": "Simple text editor for the web",
+  "author": "Philip Jackson",
+  "devDependencies": {
+    "grunt": "^0.4.5",
+    "grunt-contrib-less": "^1.0.0",
+    "grunt-contrib-watch": "^0.6.1"
+  }
+}
