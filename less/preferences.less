@@ -26,29 +26,43 @@
   top: 2px;
   height: 1em;
   display: inline-block;
-  background: url('../img/chevron-down.svg');
   background-repeat: no-repeat;
   background-position: 50% 50%;
   position: relative;
   transition: transform 300ms ease;
 }
 
+.theme-light .preferences button::after {
+  background-image: @light-theme-chevron-down-url;
+}
+
+.theme-dark .preferences button::after {
+  background-image: @dark-theme-chevron-down-url;
+}
+
+.theme-light .preferences button:hover::after,
+.theme-light .preferences.isOpen button::after {
+  background-image: @light-theme-chevron-down-hover-url;
+}
+
+.theme-dark .preferences button:hover::after,
+.theme-dark .preferences.isOpen button::after {
+  background-image: @dark-theme-chevron-down-hover-url;
+}
+
 .preferences.isOpen button::after {
   transform: rotate(180deg);
 }
 
-.preferences button:hover,
-.preferences.isOpen button {
-  background: @active-control-background;
-}
-
 .theme-light .preferences button:hover,
 .theme-light .preferences.isOpen button {
+  background: @light-theme-active-control-background;
   color: @light-theme-active-control-foreground;
 }
 
 .theme-dark .preferences button:hover,
 .theme-dark .preferences.isOpen button {
+  background: @dark-theme-active-control-background;
   color: @dark-theme-active-control-foreground;
 }
 
@@ -97,8 +111,20 @@
   position: relative;
 }
 
-.preferences menuitem:hover {
-  background: @active-control-background;
+.theme-light .preferences menuitem {
+  color: @light-theme-control-foreground;
+}
+
+.dark-light .preferences menuitem {
+  color: @light-theme-control-foreground;
+}
+
+.theme-light .preferences menuitem:hover {
+  background: @light-theme-active-control-background;
+}
+
+.theme-dark .preferences menuitem:hover {
+  background: @dark-theme-active-control-background;
 }
 
 .theme-light .preferences menuitem:hover {
@@ -116,10 +142,25 @@
   left: 0;
   height: 100%;
   top: 0;
-  background: url('../img/check.svg');
   background-repeat: no-repeat;
   background-position: 50% 50%;
   position: absolute;
+}
+
+.theme-light .preferences menuitem.isSelected::after {
+  background-image: @light-theme-check-url;
+}
+
+.theme-dark .preferences menuitem.isSelected::after {
+  background-image: @dark-theme-check-url;
+}
+
+.theme-light .preferences menuitem.isSelected:hover::after {
+  background-image: @light-theme-check-hover-url;
+}
+
+.theme-dark .preferences menuitem.isSelected:hover::after {
+  background-image: @dark-theme-check-hover-url;
 }
 
 .theme-light .preferences {

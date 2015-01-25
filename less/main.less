@@ -29,10 +29,18 @@ body, button {
   font-size: 12pt;
 }
 
-body.theme-light, .theme-light button {
+body.theme-light {
   color: @light-theme-body-text;
 }
 
-body.theme-dark, .theme-dark button {
+body.theme-dark {
   color: @dark-theme-body-text;
+}
+
+.theme-light button {
+  color: @light-theme-control-foreground;
+}
+
+.theme-dark button {
+  color: @dark-theme-control-foreground;
 }

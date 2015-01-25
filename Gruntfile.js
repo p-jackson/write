@@ -7,7 +7,11 @@ module.exports = function(grunt) {
     less: {
       development: {
         options: {
-          paths: ['./less']
+          paths: ['./less'],
+          sourceMap: true,
+          sourceMapURL: '../css/main.css.map',
+          sourceMapBasepath: '..',
+          sourceMapRootpath: '..',
         },
         files: {
           './css/main.css': './less/main.less'
@@ -19,8 +23,14 @@ module.exports = function(grunt) {
           compress: true
         },
         files: {
-          './dist/css/main.css': './less/main.less'
+          './css/main.min.css': './less/main.less'
         }
+      }
+    },
+    imageEmbed: {
+      dist: {
+        src: [ './css/main.min.css' ],
+        dest: './dist/css/main.css',
       }
     },
     requirejs: {
@@ -39,10 +49,9 @@ module.exports = function(grunt) {
     copy: {
       dist: {
         files: [
-          { src: ['./img/*'], dest: './dist/' },
           { src: ['./index.html'], dest: './dist/' }
         ],
-      },
+      }
     },
     clean: [ './dist' ],
     watch: {
@@ -56,7 +65,8 @@ module.exports = function(grunt) {
   grunt.loadNpmTasks('grunt-contrib-requirejs');
   grunt.loadNpmTasks('grunt-contrib-copy');
   grunt.loadNpmTasks('grunt-contrib-clean');
+  grunt.loadNpmTasks('grunt-image-embed');
 
   grunt.registerTask('default', 'watch');
-  grunt.registerTask('dist', [ 'clean', 'copy:dist', 'requirejs:dist', 'less:dist' ]);
+  grunt.registerTask('dist', [ 'clean', 'copy:dist', 'requirejs:dist', 'less:dist', 'imageEmbed:dist' ]);
 };
