@@ -27,6 +27,17 @@ module.exports = function(grunt) {
         }
       }
     },
+    compress: {
+      dist: {
+        options: {
+          mode: 'gzip'
+        },
+        expand: true,
+        cwd: 'dist/',
+        src: ['**/*'],
+        dest: 'dist-compressed/'
+      }
+    },
     imageEmbed: {
       dist: {
         src: [ './css/main.min.css' ],
@@ -53,7 +64,7 @@ module.exports = function(grunt) {
         ],
       }
     },
-    clean: [ './dist' ],
+    clean: [ './dist', 'dist-compressed' ],
     watch: {
       files: './less/*',
       tasks: [ 'less:development' ]
@@ -66,7 +77,8 @@ module.exports = function(grunt) {
   grunt.loadNpmTasks('grunt-contrib-copy');
   grunt.loadNpmTasks('grunt-contrib-clean');
   grunt.loadNpmTasks('grunt-image-embed');
+  grunt.loadNpmTasks('grunt-contrib-compress');
 
   grunt.registerTask('default', 'watch');
-  grunt.registerTask('dist', [ 'clean', 'copy:dist', 'requirejs:dist', 'less:dist', 'imageEmbed:dist' ]);
+  grunt.registerTask('dist', [ 'clean', 'copy:dist', 'requirejs:dist', 'less:dist', 'imageEmbed:dist', 'compress:dist' ]);
 };
