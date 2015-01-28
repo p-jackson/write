@@ -6,6 +6,13 @@
   <link rel="stylesheet" type="text/css" href="css/main.css">
 </head>
 <body data-bind="click: onBodyClick, event: { mousemove: onMouseMove }, css: bodyStyle">
+  <script type="text/javascript">
+  (function() {
+    'use strict';
+    var theme = localStorage.getItem('editorTheme');
+    document.body.classList.add(theme === 'dark' ? 'theme-dark' : 'theme-light');
+  })();
+  </script>
   <header data-bind="css: { isHidden: hideHeader }">
     <!-- ko with: preferences -->
     <div class="preferences" data-bind="css: { isOpen: showMenu }">
