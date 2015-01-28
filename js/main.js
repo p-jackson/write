@@ -5,7 +5,7 @@ requirejs.config({
   }
 });
 
-define(['knockout', 'main-vm', 'bindings'], function(ko, MainViewModel) {
+require(['knockout', 'main-vm', 'bindings'], function(ko, MainViewModel) {
   'use strict';
 
   var mainViewModel = new MainViewModel();

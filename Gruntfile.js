@@ -41,7 +41,7 @@ module.exports = function(grunt) {
     imageEmbed: {
       dist: {
         src: [ './css/main.min.css' ],
-        dest: './dist/css/main.css',
+        dest: './dist/css/main.css'
       }
     },
     requirejs: {
@@ -64,6 +64,19 @@ module.exports = function(grunt) {
         ],
       }
     },
+    hashres: {
+      options: {
+        fileNameFormat: '${name}.${hash}.${ext}',
+        renameFiles: true
+      },
+      dist: {
+        src: [
+          './dist/js/main.js',
+          './dist/css/main.css'
+        ],
+        dest: './dist/index.html',
+      }
+    },
     clean: [ './dist', 'dist-compressed' ],
     watch: {
       files: './less/*',
@@ -78,7 +91,8 @@ module.exports = function(grunt) {
   grunt.loadNpmTasks('grunt-contrib-clean');
   grunt.loadNpmTasks('grunt-image-embed');
   grunt.loadNpmTasks('grunt-contrib-compress');
+  grunt.loadNpmTasks('grunt-hashres');
 
   grunt.registerTask('default', 'watch');
-  grunt.registerTask('dist', [ 'clean', 'copy:dist', 'requirejs:dist', 'less:dist', 'imageEmbed:dist', 'compress:dist' ]);
+  grunt.registerTask('dist', [ 'clean', 'copy:dist', 'requirejs:dist', 'less:dist', 'imageEmbed:dist', 'hashres:dist', 'compress:dist' ]);
 };
