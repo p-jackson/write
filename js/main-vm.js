@@ -25,8 +25,8 @@ define(['knockout', 'preferences-vm', 'lso'], function(ko, PreferencesViewModel,
     }, this);
   }
 
-  MainViewModel.prototype.onBodyClick = function(vm, e) {
-    if (e.target.nodeName !== 'BODY')
+  MainViewModel.prototype.onAppWrapperClick = function(vm, e) {
+    if (!e.target.classList.contains('l-appWrapper'))
       return true;
 
     this.focusEditor(true);

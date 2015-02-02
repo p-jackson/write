@@ -5,18 +5,28 @@
   <link href='http://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,600,700,300italic,400italic,600italic,700italic|Source+Serif+Pro&subset=latin,latin-ext' rel='stylesheet' type='text/css'>
   <link rel="stylesheet" type="text/css" href="css/main.css">
 </head>
-<body data-bind="click: onBodyClick, event: { mousemove: onMouseMove }, css: bodyStyle">
+<body data-bind="css: bodyStyle, event: { mousemove: onMouseMove }">
+  <main class="l-appWrapper" data-bind="click: onAppWrapperClick">
+    <textarea class="editor" contenteditable data-bind="hasFocus: focusEditor, css: contentsStyle, textInput: contents"></textarea>
+  </main>
+
   <script type="text/javascript">
   (function() {
     'use strict';
-    var theme = localStorage.getItem('editorTheme');
-    document.body.classList.add(theme === 'dark' ? 'theme-dark' : 'theme-light');
+    var t = localStorage.getItem('editorTheme');
+    document.body.classList.add(t === 'dark' ? 'theme-dark' : 'theme-light');
+
+    var s = localStorage.getItem('editorTextSize');
+    var e = document.querySelector('.editor');
+    if (s === 'smaller') e.classList.add('isSmaller');
+    else if (s === 'larger') e.classList.add('isLarger');
   })();
   </script>
+
   <header data-bind="css: { isHidden: hideHeader }">
     <!-- ko with: preferences -->
     <div class="preferences" data-bind="css: { isOpen: showMenu }">
-      <button  type="menu" menu="dropdown-menu" data-bind="click: onButtonClick">Preferences</button>
+      <button  type="menu" menu="dropdown-menu" data-bind="menuPopup: showMenu">Preferences</button>
       <menu type="popup" id="dropdown-menu">
         <menu>
           <menuitem data-bind="click: onSmallerClick, css: { isSelected: smallerSelected }">Smaller</menuitem>
@@ -31,7 +41,6 @@
     </div>
     <!-- /ko -->
   </header>
-  <main class="editor" contenteditable data-bind="hasFocus: focusEditor, content: contents, css: contentsStyle"></main>
   <script type="text/javascript" src="http://cdnjs.cloudflare.com/ajax/libs/require.js/2.1.15/require.min.js" data-main="js/main.js"></script>
 </body>
 </html>
