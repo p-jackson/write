@@ -1,6 +1,24 @@
 define(['knockout'], function(ko) {
   'use strict';
 
+  ko.bindingHandlers.textareaGrow = {
+    init: function(el) {
+
+      function resize() {
+        el.style.height = '';
+
+        var oldHeight = el.clientHeight;
+        var newHeight = el.scrollHeight;
+
+        if (oldHeight < newHeight)
+          el.style.height = newHeight + 'px';
+      }
+
+      resize();
+      el.addEventListener('input', resize);
+    }
+  };
+
   ko.bindingHandlers.menuPopup = {
     init: function(el, valueAccessor) {
       var observable = valueAccessor();
