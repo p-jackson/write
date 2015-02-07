@@ -5,17 +5,21 @@ define(['knockout'], function(ko) {
     init: function(el) {
 
       function resize() {
+        var scroll = document.body.scrollTop;
         el.style.height = '';
 
-        var oldHeight = el.clientHeight;
-        var newHeight = el.scrollHeight;
+        var nativeHeight = el.clientHeight;
+        var textHeight = el.scrollHeight;
 
-        if (oldHeight < newHeight)
-          el.style.height = newHeight + 'px';
+        if (nativeHeight < textHeight)
+          el.style.height = textHeight + 'px';
+
+        document.body.scrollTop = scroll;
       }
 
       resize();
       el.addEventListener('input', resize);
+      window.addEventListener('resize', resize);
     }
   };
 

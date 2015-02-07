@@ -6,9 +6,12 @@
   <link rel="stylesheet" type="text/css" href="css/main.css">
 </head>
 <body data-bind="css: bodyStyle, event: { mousemove: onMouseMove }">
-  <main class="l-appWrapper" data-bind="click: onAppWrapperClick">
-    <textarea class="editor" contenteditable data-bind="hasFocus: focusEditor, css: contentsStyle, textInput: contents, textareaGrow: true"></textarea>
+  <!-- ko with: editor -->
+  <main class="l-mainEditor editor" data-bind="click: onClick, css: editorStyle">
+    <textarea contenteditable rows="1" data-bind="hasFocus: focusEditor, textInput: contents, textareaGrow: true"></textarea>
+    <div class="editor-scrollSpacer"></div>
   </main>
+  <!-- /ko -->
 
   <script type="text/javascript">
   (function() {
