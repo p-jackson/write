@@ -26,9 +26,6 @@ define(['knockout', 'lso'], function(ko, localStorageObservable) {
       return this.theme() === 'dark';
     }, this);
   }
-  PreferencesViewModel.prototype.onButtonClick = function() {
-    this.showMenu(!this.showMenu());
-  };
   PreferencesViewModel.prototype.canHideHeader = function() {
     return !this.showMenu();
   };

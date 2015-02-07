@@ -81,6 +81,24 @@ module.exports = function(grunt) {
     watch: {
       files: './less/*',
       tasks: [ 'less:development' ]
+    },
+    jasmine: {
+      write: {
+        options: {
+          specs: [ './test/spec/*.spec.js' ],
+          outfile: './test/spec-runner.html',
+          template: require('grunt-template-jasmine-requirejs'),
+          keepRunner: true,
+          templateOptions: {
+            requireConfig: {
+              baseUrl: '../js',
+              paths: {
+                knockout: 'http://cdnjs.cloudflare.com/ajax/libs/knockout/3.2.0/knockout-min'
+              }
+            }
+          }
+        }
+      }
     }
   });
 
@@ -92,6 +110,7 @@ module.exports = function(grunt) {
   grunt.loadNpmTasks('grunt-image-embed');
   grunt.loadNpmTasks('grunt-contrib-compress');
   grunt.loadNpmTasks('grunt-hashres');
+  grunt.loadNpmTasks('grunt-contrib-jasmine');
 
   grunt.registerTask('default', 'watch');
   grunt.registerTask('dist', [ 'clean', 'copy:dist', 'requirejs:dist', 'less:dist', 'imageEmbed:dist', 'hashres:dist', 'compress:dist' ]);

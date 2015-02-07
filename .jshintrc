@@ -2,6 +2,10 @@
   "globals": {
     "define": true,
     "requirejs": true,
-    "require": true
+    "require": true,
+    "describe": true,
+    "it": true,
+    "beforeEach": true,
+    "expect": true
   }
 }

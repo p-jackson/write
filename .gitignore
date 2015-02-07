@@ -2,3 +2,5 @@ node_modules
 css
 dist
 dist-compressed
+.grunt
+test/spec-runner.html
