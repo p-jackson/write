@@ -4,3 +4,4 @@ dist
 dist-compressed
 .grunt
 test/spec-runner.html
+test/coverage

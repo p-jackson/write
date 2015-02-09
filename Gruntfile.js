@@ -77,15 +77,17 @@ module.exports = function(grunt) {
         dest: './dist/index.html',
       }
     },
-    clean: [ './dist', 'dist-compressed' ],
+    clean: [ './dist', './dist-compressed' ],
     watch: {
       files: './less/*',
       tasks: [ 'less:development' ]
     },
     jasmine: {
-      write: {
+      options: {
+        specs: [ './test/spec/*.spec.js' ]
+      },
+      test: {
         options: {
-          specs: [ './test/spec/*.spec.js' ],
           outfile: './test/spec-runner.html',
           template: require('grunt-template-jasmine-requirejs'),
           keepRunner: true,
@@ -94,6 +96,36 @@ module.exports = function(grunt) {
               baseUrl: '../js',
               paths: {
                 knockout: 'http://cdnjs.cloudflare.com/ajax/libs/knockout/3.2.0/knockout-min'
+              }
+            }
+          }
+        }
+      },
+      coverage: {
+        options: {
+          src: 'js/*.js',
+          template: require('grunt-template-jasmine-istanbul'),
+          templateOptions: {
+            coverage: './test/coverage/coverage.json',
+            report: [
+              {
+                type: 'html',
+                options: {
+                  dir: './test/coverage/html'
+                }
+              },
+              {
+                type: 'text-summary'
+              }
+            ],
+            template: require('grunt-template-jasmine-requirejs'),
+            templateOptions: {
+              scripts: { src: '*.js' },
+              requireConfig: {
+                baseUrl: '.grunt/grunt-contrib-jasmine/js',
+                paths: {
+                  knockout: 'http://cdnjs.cloudflare.com/ajax/libs/knockout/3.2.0/knockout-min'
+                }
               }
             }
           }
@@ -114,4 +146,7 @@ module.exports = function(grunt) {
 
   grunt.registerTask('default', 'watch');
   grunt.registerTask('dist', [ 'clean', 'copy:dist', 'requirejs:dist', 'less:dist', 'imageEmbed:dist', 'hashres:dist', 'compress:dist' ]);
+  grunt.registerTask('test', [ 'jasmine:test' ]);
+  grunt.registerTask('coverage', [ 'jasmine:coverage' ]);
+  grunt.registerTask('cover', [ 'coverage' ]);
 };
